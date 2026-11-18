@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Happy Birthday Scrapbook 🎀</title>
+
+    <!-- Google Fonts matching Canva Template (Parisienne, Alice, Patrick Hand) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alice&family=Dancing+Script:wght@600;700&family=Parisienne&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styling & Authentic Junk Journal Textures -->
+    <style>
+        body {
+            font-family: 'Alice', serif;
+            background-color: #171312;
+            color: #f5f5f5;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .font-script {
+            font-family: 'Parisienne', cursive;
+        }
+
+        .font-handwritten {
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        .font-editorial {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Real Denim Fabric Background */
+        .denim-section {
+            background-image: url('assets/decorations/denim_texture.jpg');
+            background-repeat: repeat;
+            background-size: 320px auto;
+            position: relative;
+        }
+
+        /* Vinyl slow spin */
+        @keyframes spinSlow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .spin-slow {
+            animation: spinSlow 3.8s linear infinite;
+        }
+
+        /* Gentle floating animation for charms */
+        @keyframes gentleFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .gentle-float {
+            animation: gentleFloat 4s ease-in-out infinite;
+        }
+
+        /* Flying organic charms on Kirim Love */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: flyUp 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes flyUp {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.6);
+            }
+
+            50% {
+                opacity: 0.95;
+                transform: translate(calc(-50% + var(--dx)), calc(-50% - 90px)) scale(1.25) rotate(var(--rot));
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--dx) * 1.5), calc(-50% - 210px)) scale(0.8) rotate(calc(var(--rot) * 2));
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden select-none">
+
+    <!-- Global SVG ClipPaths for Heart Locket -->
+    <svg class="w-0 h-0 absolute pointer-events-none" aria-hidden="true">
+        <defs>
+            <clipPath id="smoothHeart" clipPathUnits="objectBoundingBox">
+                <path
+                    d="M 0.5, 0.88 C 0.5, 0.88 0.08, 0.54 0.08, 0.30 C 0.08, 0.14 0.20, 0.04 0.34, 0.04 C 0.42, 0.04 0.47, 0.10 0.50, 0.16 C 0.53, 0.10 0.58, 0.04 0.66, 0.04 C 0.80, 0.04 0.92, 0.14 0.92, 0.30 C 0.92, 0.54 0.5, 0.88 0.5, 0.88 Z" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <!-- 🎵 Floating Vinyl Music Widget -->
+    <div class="fixed bottom-5 right-4 z-50">
+        <button id="musicBtn"
+            class="group flex items-center gap-2.5 bg-[#1b1513]/90 hover:bg-[#2c201d] text-stone-200 backdrop-blur-md shadow-2xl rounded-full pl-3 pr-4 py-2 border border-stone-700/80 transition-all duration-300 hover:scale-105 active:scale-95"
+            title="Putar / Jeda Musik">
+            <span id="musicDisc" class="text-xl inline-block transition-transform duration-500">💿</span>
+            <div class="flex flex-col text-left">
+                <span id="musicStatus"
+                    class="text-xs font-serif tracking-wider text-rose-200 font-semibold leading-tight">Play
+                    Music</span>
+                <span class="text-[9px] text-stone-400 font-mono tracking-tighter">auto on scroll</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Top Stitched Leather Trim -->
+    <div class="w-full h-3 overflow-hidden">
+        <img src="assets/decorations/stitch_border.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- ==============================================
+         PAGE 1: HERO COVER (BURGUNDY OVAL MIRROR & CHARMS)
+         ============================================== -->
+    <section id="heroSection"
+        class="min-h-screen flex flex-col items-center justify-center text-center px-6 py-14 relative overflow-hidden bg-gradient-to-b from-[#221a18] via-[#1a1413] to-[#140f0e]">
+
+        <!-- Heading Group -->
+        <div class="max-w-md w-full mx-auto relative mb-3">
+
+            <!-- Real Silver Flying Swallows (Top-Right) -->
+            <div class="absolute -top-3 right-6 w-20 md:w-24 select-none opacity-90 gentle-float">
+                <img src="assets/decorations/silver_birds.png" alt="Silver Birds" class="w-full h-auto drop-shadow-md">
+            </div>
+
+            <!-- "Happy" with Real Safety Pin -->
+            <div class="relative inline-block mt-2">
+                <!-- Real Vintage Safety Pin (Peniti) pinned to 'H' -->
+                <div
+                    class="absolute -top-4 -left-7 w-12 md:w-14 select-none transform -rotate-12 filter drop-shadow-md">
+                    <img src="assets/decorations/safety_pin.png" alt="Safety Pin" class="w-full h-auto">
+                </div>
+                <h1
+                    class="font-script text-7xl md:text-8xl text-[#f7f5f0] tracking-wide filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+                    Happy
+                </h1>
+            </div>
+
+            <!-- Real Gold Blossom Accent & "Birthday!" -->
+            <div class="flex items-center justify-center gap-2 -mt-2">
+                <div class="w-10 h-10 select-none filter drop-shadow-md">
+                    <img src="assets/decorations/flower_gold.png" alt="Flower" class="w-full h-full object-contain">
+                </div>
+                <h2
+                    class="font-script text-7xl md:text-8xl text-[#f2e6dc] italic tracking-wide filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+                    Birthday!
+                </h2>
+            </div>
+
+            <!-- Subtitle -->
+            <p id="heroSubtitle"
+                class="mt-3 text-xs md:text-sm text-stone-300 font-serif max-w-xs md:max-w-md mx-auto opacity-85 leading-relaxed tracking-wide">
+                Wishing you endless happiness, success, and beautiful moments ahead
+            </p>
+        </div>
+
+        <!-- Centerpiece: Real Burgundy Carved Oval Frame -->
+        <div class="relative w-64 h-80 md:w-72 md:h-92 mx-auto my-5 flex items-center justify-center">
+
+            <!-- Photo inside Frame -->
+            <div
+                class="absolute w-[68%] h-[74%] rounded-[50%/44%] overflow-hidden shadow-inner bg-black flex items-center justify-center z-10">
+                <img id="ovalCoverImg" src="assets/images/cover.jpg" alt="Special Someone"
+                    class="w-full h-full object-cover filter contrast-105"
+                    onerror="this.src='assets/images/photo1.jpg'">
+            </div>
+
+            <!-- Frame Overlay -->
+            <img src="assets/decorations/oval_mirror_frame.png" alt="Ornate Frame"
+                class="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.85)]">
+
+            <!-- Charms around frame -->
+            <div
+                class="absolute -top-6 -left-7 w-20 md:w-22 z-30 select-none filter drop-shadow-lg transform -rotate-12 hover:scale-110 transition duration-300">
+                <img src="assets/decorations/vintage_camera.png" alt="Camera Charm" class="w-full h-auto">
+            </div>
+
+            <div
+                class="absolute -top-7 -right-5 w-16 md:w-18 z-30 select-none filter drop-shadow-lg transform rotate-12 hover:scale-110 transition duration-300">
+                <img src="assets/decorations/metal_flower.png" alt="Metal Flower" class="w-full h-auto">
+            </div>
+
+            <div
+                class="absolute top-1/2 -right-8 -translate-y-1/2 w-16 md:w-18 z-30 select-none filter drop-shadow-lg transform rotate-6 hover:scale-110 transition duration-300">
+                <img src="assets/decorations/tag_with_love.png" alt="With Love Tag" class="w-full h-auto">
+            </div>
+
+            <div class="absolute -bottom-4 -right-3 w-12 md:w-14 z-30 select-none filter drop-shadow-xl transform rotate-12 hover:scale-125 transition duration-300 cursor-pointer"
+                title="Love you">
+                <img src="assets/decorations/ruby_heart.png" alt="Ruby Heart" class="w-full h-auto">
+            </div>
+
+            <div
+                class="absolute -bottom-6 -left-7 w-16 md:w-20 z-30 select-none filter drop-shadow-xl transform -rotate-12 hover:scale-110 transition duration-300">
+                <img src="assets/decorations/miffy_bunny.png" alt="Miffy Bunny" class="w-full h-auto">
+            </div>
+
+        </div>
+
+        <!-- Scroll down indicator -->
+        <div class="mt-6 flex flex-col items-center cursor-pointer opacity-75 hover:opacity-100 transition duration-300"
+            onclick="document.getElementById('collageSection').scrollIntoView({behavior:'smooth'})">
+            <span class="text-[11px] uppercase tracking-widest text-stone-400 mb-1 font-serif">Scroll down
+                <img src="assets/decorations/vintage_envelope.png" alt="" class="inline w-4 h-4 object-contain filter drop-shadow-sm align-middle ml-0.5">
+            </span>
+            <div class="w-4 h-7 border border-stone-500 rounded-full flex justify-center pt-1">
+                <div class="w-1 h-2 bg-rose-300 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Stitched Leather Divider -->
+    <div class="w-full h-3.5 overflow-hidden relative z-20">
+        <img src="assets/decorations/stitch_border.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- ==============================================
+         PAGE 2: DENIM SCRAPBOOK COLLAGE (PHOTO 1 & PHOTO 2)
+         ============================================== -->
+    <section id="collageSection"
+        class="min-h-screen denim-section px-5 py-24 relative overflow-hidden flex flex-col items-center justify-center">
+
+        <div
+            class="max-w-md md:max-w-3xl w-full mx-auto flex flex-col md:flex-row items-center justify-center gap-10 md:gap-8">
+
+            <!-- Item 1: Polaroid Card + Real Brown Sealed Envelope -->
+            <div
+                class="relative transform -rotate-4 hover:rotate-0 hover:scale-105 transition-all duration-500 z-10 cursor-pointer group">
+
+                <!-- Real Brown Sealed Envelope behind Polaroid -->
+                <div
+                    class="absolute -top-7 -left-6 w-24 md:w-28 select-none filter drop-shadow-lg transform -rotate-12">
+                    <img src="assets/decorations/vintage_envelope.png" alt="Envelope" class="w-full h-auto">
+                </div>
+
+                <!-- White Polaroid Card -->
+                <div class="relative bg-white p-3 pb-6 shadow-2xl rounded-sm border border-stone-200 w-60 md:w-68">
+                    <div class="w-full h-56 md:h-64 overflow-hidden rounded-sm bg-stone-100">
+                        <img id="polaroidImg" src="assets/images/photo1.jpg" alt="Memory"
+                            class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                            loading="lazy">
+                    </div>
+                    <div id="polaroidCaption" class="mt-3 flex items-center justify-center gap-2">
+                        <img src="assets/decorations/ruby_heart.png" alt="" class="w-5 h-5 object-contain filter drop-shadow-sm flex-shrink-0">
+                        <span class="text-stone-800 font-handwritten text-2xl font-bold">First memory</span>
+                        <img src="assets/decorations/ruby_heart.png" alt="" class="w-5 h-5 object-contain filter drop-shadow-sm flex-shrink-0">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Item 2: Real Ditto Postcard + Wax Seal + Silver Heart Locket -->
+            <div class="relative flex flex-col items-center z-20">
+
+                <div id="heartLocketWrapper"
+                    class="relative w-64 md:w-72 select-none filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.85)] cursor-pointer hover:scale-105 transition-transform duration-300"
+                    title="Klik liontin untuk mengirim love ✨">
+
+                    <!-- Photo clipped inside Heart -->
+                    <div
+                        class="absolute top-[37%] left-[26%] w-[49%] h-[49%] overflow-hidden z-10 flex items-center justify-center">
+                        <img id="heartPhotoImg" src="assets/images/photo2.jpg" alt="Love Photo"
+                            class="w-full h-full object-cover filter contrast-105"
+                            style="clip-path: url(#smoothHeart); -webkit-clip-path: url(#smoothHeart); transform: scale(1.08);">
+                    </div>
+
+                    <!-- Real Canva Ditto Postcard + Red Wax Seal + Silver Heart Frame Image -->
+                    <img src="assets/decorations/ditto_heart_locket.png" alt="Ditto Heart Locket"
+                        class="w-full h-auto relative z-20 pointer-events-none">
+                </div>
+
+                <!-- Real Padlock with Rope Bow Charm below -->
+                <div class="mt-3 flex items-center gap-2 select-none filter drop-shadow">
+                    <div class="w-9 h-9">
+                        <img src="assets/decorations/padlock_charm.png" alt="Padlock Charm"
+                            class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-serif text-stone-300 opacity-85">Locked with love forever</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Stitched Leather Divider -->
+    <div class="w-full h-3.5 overflow-hidden relative z-20">
+        <img src="assets/decorations/stitch_border.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- ==============================================
+         PAGE 3: RIPPED PAPER LOVE LETTER (REAL CLIP & SHEET)
+         ============================================== -->
+    <section id="letterSection" class="min-h-screen denim-section px-5 py-24 relative flex items-center justify-center">
+
+        <div class="relative max-w-sm md:max-w-xl w-full mx-auto my-4">
+
+            <!-- Real Golden Bulldog Clip pinned at top center -->
+            <div class="absolute -top-7 left-1/2 -translate-x-1/2 w-20 md:w-24 z-30 select-none filter drop-shadow-xl">
+                <img src="assets/decorations/golden_clip.png" alt="Golden Clip" class="w-full h-auto">
+            </div>
+
+            <!-- RIPPED PAPER NOTE CONTAINER -->
+            <div class="relative w-full shadow-2xl">
+
+                <!-- Real Canva Ripped Paper Background -->
+                <img src="assets/decorations/ripped_paper.png" alt="Ripped Paper Note"
+                    class="w-full h-full absolute inset-0 object-fill select-none filter drop-shadow-xl">
+
+                <!-- Content positioned inside paper -->
+                <div class="relative z-10 px-8 py-14 md:px-14 md:py-20 text-center">
+
+                    <!-- Title -->
+                    <h3 id="letterTitle" class="font-handwritten text-3xl md:text-4xl font-bold text-[#3e2723] mb-6">
+                        <img src="assets/decorations/flower_gold.png" alt="" class="inline w-6 h-6 object-contain filter drop-shadow-sm align-middle mr-1">
+                        <span class="title-text">Happy birthday to youuu</span>
+                        <img src="assets/decorations/ruby_heart.png" alt="" class="inline w-6 h-6 object-contain filter drop-shadow-sm align-middle ml-1">
+                    </h3>
+
+                    <!-- Body paragraphs from config.js -->
+                    <div id="letterBody"
+                        class="font-handwritten text-xl md:text-2xl leading-relaxed text-[#2c2220] space-y-4">
+                        <p>
+                            Happy birthday yaa
+                            <img src="assets/decorations/ruby_heart.png" alt="" class="inline w-5 h-5 object-contain filter drop-shadow-sm align-middle mx-0.5">
+                            Aku gak nyangka kamu bisa sampai sejauh ini, dan jujur aku bangga
+                            banget sama kamu.
+                        </p>
+                        <p>
+                            Terima kasih sudah selalu bertahan, sudah kuat, dan tetap jadi diri kamu sendiri di setiap
+                            keadaan.
+                        </p>
+                        <p>
+                            Di umur 18 ini, semoga kamu makin bahagia, makin tenang, dan selalu dikelilingi hal-hal
+                            baik.
+                        </p>
+                        <p>
+                            I do really love you
+                            <img src="assets/decorations/ruby_heart.png" alt="" class="inline w-5 h-5 object-contain filter drop-shadow-sm align-middle mx-0.5">
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Real White Porcelain Rose Blossom (Bottom-Right Corner) -->
+                <div
+                    class="absolute -bottom-4 -right-3 w-14 md:w-16 z-20 select-none filter drop-shadow-lg transform rotate-12 hover:scale-110 transition duration-300">
+                    <img src="assets/decorations/white_rose.png" alt="White Rose" class="w-full h-auto">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Stitched Leather Divider -->
+    <div class="w-full h-3.5 overflow-hidden relative z-20">
+        <img src="assets/decorations/stitch_border.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- ==============================================
+         PAGE 4: NOSTALGIC MEMORIES (FOTO KAMERA JADUL DI ATAS & VIDEO DI BAWAH)
+         ============================================== -->
+    <section id="nostalgicSection"
+        class="min-h-screen flex flex-col items-center justify-center bg-[#0d0c10] px-5 py-24 text-white relative">
+
+        <!-- 📸 SECTION HEADER -->
+        <div class="w-full max-w-sm md:max-w-md text-center mb-10">
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-950/80 border border-red-800 text-red-300 text-xs tracking-wider uppercase font-mono shadow">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                <span>● NOSTALGIC MEMORIES</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-editorial mt-3 text-stone-200">
+                Nostalgic Memories
+            </h2>
+            <p class="text-xs text-stone-400 font-serif mt-1.5 italic flex items-center justify-center gap-1.5">
+                Potret manis dari kamera jadul kita
+                <img src="assets/decorations/vintage_camera.png" alt="" class="inline w-4 h-4 object-contain filter drop-shadow-sm align-middle">
+            </p>
+        </div>
+
+        <!-- ==============================================
+             BAGIAN ATAS NOSTALGIC MEMORIES:
+             FOTO HASIL KAMERA JADUL YANG KELUAR KERTAS FOTO
+             ============================================== -->
+        <div class="w-full max-w-sm md:max-w-md flex flex-col items-center relative">
+
+            <!-- Kamera Jadul dengan Celah Tempat Kertas Foto Keluar -->
+            <div class="relative flex flex-col items-center mb-6">
+                <!-- Badan Kamera Jadul -->
+                <div
+                    class="w-24 md:w-28 select-none filter drop-shadow-2xl z-20 transform hover:scale-105 transition-transform duration-300">
+                    <img src="assets/decorations/vintage_camera.png" alt="Vintage Camera" class="w-full h-auto">
+                </div>
+
+                <!-- Celah / Slot Tempat Kertas Foto Keluar -->
+                <div
+                    class="w-44 md:w-52 h-3.5 bg-[#1a171e] rounded-full border border-stone-700 shadow-inner -mt-2.5 z-10 flex items-center justify-center">
+                    <div class="w-36 md:w-44 h-1.5 bg-black rounded-full shadow-inner"></div>
+                </div>
+            </div>
+
+            <!-- Deretan Kertas Foto Kamera Jadul yang Keluar (Polaroid Prints Container) -->
+            <div id="cameraPhotoStack" class="w-full flex flex-col items-center gap-9 -mt-2 z-0">
+                <!-- Injected dynamically by JS (photo 3, 4, 5) with retro date stamps & handwritten captions -->
+            </div>
+
+        </div>
+
+        <!-- PEMISAH RETRO TAPE KE BAGIAN VIDEO DI BAWAH SEMUA FOTO -->
+        <div class="my-16 flex items-center justify-center gap-3 text-stone-400 w-full max-w-sm">
+            <div class="h-[1px] flex-1 bg-stone-800"></div>
+            <span
+                class="text-[11px] font-mono tracking-widest uppercase text-red-400 font-semibold flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black/80 border border-stone-800 shadow">
+                <span>📼</span><span>CAMCORDER VIDEO TAPE</span>
+            </span>
+            <div class="h-[1px] flex-1 bg-stone-800"></div>
+        </div>
+
+        <!-- ==============================================
+             BAGIAN BAWAH NOSTALGIC MEMORIES:
+             VIDEO DI BAWAH SEMUA FOTO (DI DALAM TV RETRO)
+             ============================================== -->
+        <div class="w-full max-w-sm md:max-w-md aspect-[4/3.2] flex items-center justify-center relative">
+
+            <!-- Layar CRT Cembung di dalam Bingkai TV -->
+            <div class="absolute w-[80%] h-[75%] rounded-[1.4rem] overflow-hidden bg-black z-10 flex items-center justify-center shadow-inner cursor-pointer"
+                id="tvScreenArea" title="Ketuk untuk putar / jeda video">
+
+                <!-- Video Element: muted, autoplay, loop, playsinline -->
+                <video id="tvVideo" src="assets/images/vid.mov" loop muted playsinline autoplay
+                    class="w-full h-full object-cover filter contrast-105 brightness-95">
+                </video>
+
+                <!-- CRT Scanlines Overlay -->
+                <div
+                    class="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.3)_50%)] bg-[length:100%_4px] opacity-40">
+                </div>
+
+                <!-- Camcorder Viewfinder OSD UI -->
+                <div
+                    class="absolute inset-0 p-3.5 flex flex-col justify-between pointer-events-none font-mono text-[11px] text-white/85 select-none">
+                    <div class="flex justify-between items-center">
+                        <span class="bg-red-600 px-1.5 py-0.2 rounded text-white font-bold text-[9px]">● REC</span>
+                        <span>SP 0:00:18</span>
+                    </div>
+
+                    <div class="flex justify-center items-center">
+                        <div class="w-8 h-8 border border-white/40 flex items-center justify-center">
+                            <div class="w-1.5 h-1.5 bg-white/70 rounded-full"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bingkai TV Retro Vintage Asli Canva Overlay -->
+            <img src="assets/decorations/retro_tv.png" alt="Retro TV"
+                class="w-full h-full object-contain relative z-20 pointer-events-none filter drop-shadow-[0_20px_45px_rgba(0,0,0,0.9)]">
+
+        </div>
+
+        <p class="mt-4 text-[11px] text-stone-500 font-mono tracking-tight text-center">
+            [ Video kenangan otomatis diputar &amp; tanpa suara ]
+        </p>
+
+    </section>
+
+    <!-- Stitched Leather Divider -->
+    <div class="w-full h-3.5 overflow-hidden relative z-20">
+        <img src="assets/decorations/stitch_border.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- ==============================================
+         PAGE 5: CLOSING, INTERACTIVE LOVE & REPLAY
+         ============================================== -->
+    <section id="closingSection"
+        class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#1a1413] to-[#100c0b] px-6 py-20 relative text-center">
+
+        <div class="max-w-md mx-auto">
+
+            <!-- Real Ruby Cameo Heart as Center Closing Charm -->
+            <div class="w-14 h-14 mx-auto mb-5 filter drop-shadow-xl select-none gentle-float">
+                <img src="assets/decorations/ruby_heart.png" alt="Love Charm" class="w-full h-full object-contain">
+            </div>
+
+            <p id="closingMessage" class="text-lg md:text-xl mb-6 text-stone-200 font-serif leading-relaxed">
+                No matter where life takes you, I hope you always feel loved darling.
+            </p>
+
+            <p id="closingFrom" class="text-base italic text-stone-400 font-serif mb-1">
+                With love,
+            </p>
+
+            <p id="closingName" class="text-4xl font-script text-rose-300">
+                Aen
+            </p>
+
+            <!-- Organic "Kirim Love" Button with Canva Ruby Heart -->
+            <div class="mt-10 flex flex-col items-center">
+                <button id="loveBtn"
+                    class="group px-8 py-3.5 rounded-full bg-gradient-to-r from-[#6b1e28] via-[#852a36] to-[#54121b] hover:from-[#7e2430] hover:to-[#631620] border-2 border-[#b54a5a] text-[#f7e6d8] font-serif font-bold tracking-wide transition-all duration-300 shadow-[0_10px_25px_rgba(107,30,40,0.5)] active:scale-95 flex items-center gap-3">
+                    <!-- Real Canva Ruby Heart Charm Icon -->
+                    <div
+                        class="w-6 h-6 object-contain group-hover:scale-125 transition-transform duration-300 filter drop-shadow">
+                        <img src="assets/decorations/ruby_heart.png" alt="Ruby Heart"
+                            class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-sm tracking-wider">Kirim Love (<span id="loveCount">0</span>)</span>
+                </button>
+                <span class="text-[11px] text-stone-400 mt-2.5 font-serif italic">Ketuk untuk mengirim peluk & cinta
+                    ✨</span>
+            </div>
+
+            <!-- Organic "Replay dari Awal" Button with Canva Padlock Charm -->
+            <button id="replayBtn"
+                class="mt-8 px-6 py-2.5 rounded-full bg-[#241a17] hover:bg-[#32231f] text-stone-300 border border-[#5a4238] text-xs font-serif tracking-wider uppercase transition-all shadow-md active:scale-95 flex items-center gap-2.5 mx-auto group">
+                <div class="w-4 h-4 group-hover:rotate-12 transition-transform duration-300">
+                    <img src="assets/decorations/padlock_charm.png" alt="Charm" class="w-full h-full object-contain">
+                </div>
+                <span>Putar Ulang Scrapbook</span>
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Bottom Stitched Leather Trim -->
+    <div class="w-full h-3 overflow-hidden">
+        <img src="assets/decorations/stitch_border.png" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop preload="auto"></audio>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
