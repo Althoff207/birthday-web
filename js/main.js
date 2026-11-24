@@ -102,22 +102,22 @@ function initContent() {
       const card = document.createElement("div");
       const rot = photo.rotate || (idx % 2 === 0 ? -2.5 : 3);
       card.className =
-        "relative bg-[#faf7f2] p-3 pb-7 rounded-sm shadow-[0_15px_35px_rgba(0,0,0,0.65)] border border-stone-300/80 w-64 md:w-72 transform hover:rotate-0 hover:scale-105 transition-all duration-300 group cursor-pointer";
-      card.style.transform = `rotate(${rot}deg)`;
+        "photo-print-card relative bg-[#faf7f2] p-2.5 sm:p-3 pb-6 sm:pb-7 rounded-sm shadow-[0_15px_35px_rgba(0,0,0,0.65)] border border-stone-300/80 w-[250px] sm:w-64 md:w-72 max-w-[85vw] group cursor-pointer";
+      card.style.setProperty("--target-rot", `${rot}deg`);
 
       const cleanCaption = stripEmoji(photo.caption) || 'Sweet memory';
 
       card.innerHTML = `
         <!-- Bagian Foto Glossy Kamera Jadul -->
-        <div class="w-full h-56 md:h-64 overflow-hidden rounded-[2px] bg-stone-900 relative shadow-inner">
+        <div class="w-full h-48 sm:h-56 md:h-64 overflow-hidden rounded-[2px] bg-stone-900 relative shadow-inner">
           <img src="${photo.src}" alt="${cleanCaption}" class="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition duration-500" loading="lazy">
         </div>
 
         <!-- Caption dengan Canva Charm Icons -->
         <div class="mt-3 flex items-center justify-center gap-2">
-          <img src="assets/decorations/white_rose.png" alt="" class="w-5 h-5 object-contain filter drop-shadow-sm flex-shrink-0">
-          <p class="text-center text-stone-800 font-handwritten text-xl font-bold leading-tight">${cleanCaption}</p>
-          <img src="assets/decorations/ruby_heart.png" alt="" class="w-5 h-5 object-contain filter drop-shadow-sm flex-shrink-0">
+          <img src="assets/decorations/white_rose.png" alt="" class="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow-sm flex-shrink-0">
+          <p class="text-center text-stone-800 font-handwritten text-lg sm:text-xl font-bold leading-tight">${cleanCaption}</p>
+          <img src="assets/decorations/ruby_heart.png" alt="" class="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow-sm flex-shrink-0">
         </div>
       `;
 
@@ -127,6 +127,27 @@ function initContent() {
 
       cameraPhotoStack.appendChild(card);
     });
+
+    // IntersectionObserver agar kertas foto keluar satu-persatu saat scroll
+    if ("IntersectionObserver" in window) {
+      const photoObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".photo-print-card").forEach((card) => {
+        photoObserver.observe(card);
+      });
+    } else {
+      document.querySelectorAll(".photo-print-card").forEach((card) => {
+        card.classList.add("is-visible");
+      });
+    }
   }
 
   // 4. Ripped Letter Note
@@ -148,7 +169,7 @@ function initContent() {
     const paras = letterData.paragraphs || [];
     if (paras.length > 0) {
       letterBody.innerHTML = paras
-        .map(p => `<p class="leading-relaxed">${stripEmoji(p)}</p>`)
+        .map(p => `<p class="leading-relaxed sm:leading-loose">${stripEmoji(p)}</p>`)
         .join("");
     }
   }
@@ -216,13 +237,11 @@ function updateMusicUI(isPlaying) {
   if (!musicBtn) return;
   if (isPlaying) {
     if (musicDisc) {
-      musicDisc.textContent = "💿";
       musicDisc.classList.add("spin-slow");
     }
-    if (musicStatus) musicStatus.textContent = "Playing ♫";
+    if (musicStatus) musicStatus.textContent = "Playing";
   } else {
     if (musicDisc) {
-      musicDisc.textContent = "🎵";
       musicDisc.classList.remove("spin-slow");
     }
     if (musicStatus) musicStatus.textContent = "Play Music";

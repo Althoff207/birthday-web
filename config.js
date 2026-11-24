@@ -5,7 +5,7 @@ const CONFIG = {
   name: "Aca",
   from: "Aen",
 
-  age: 19, // 👉 GANTI UMUR DI SINI
+  age: 19, // GANTI UMUR DI SINI
 
   title: {
     birthday: "happy birthday, now you're turn",
@@ -27,7 +27,7 @@ const CONFIG = {
 CONFIG.photos = [
   {
     src: "assets/images/photo1.jpg",
-    caption: "First memory 🤍",
+    caption: "First memory",
     rotate: -4
   },
   {
@@ -42,14 +42,14 @@ CONFIG.photos = [
   },
   {
     src: "assets/images/photo4.jpg",
-    caption: "Us ✨",
+    caption: "Us",
     rotate: 5
   }
 ];
 
 CONFIG.photos.push({
   src: "assets/images/photo5.jpeg",
-  caption: "New memory 💫",
+  caption: "New memory",
   rotate: -3
 });
 
@@ -63,7 +63,7 @@ CONFIG.letter = {
   birthday: {
     title: "The first on my mind",
     paragraphs: [
-      "Happy birthday, my little baby. 🤍 Hari ini adalah tentang merayakan kamu dan semua hal luar biasa yang ada di dalam dirimu.",
+      "Happy birthday, my little baby. Hari ini adalah tentang merayakan kamu dan semua hal luar biasa yang ada di dalam dirimu.",
       "Aku bangga sekali sama kamu dan setiap langkah kecil ataupun besar yang sudah kamu lewati sampai titik ini.",
       "Terima kasih sudah hadir dan bikin hidupku terasa jauh lebih utuh. Having you by my side is truly my greatest blessing.",
       "Selamat bertambah usia, sayangku. Let’s keep growing and shining together."
@@ -81,12 +81,12 @@ CONFIG.letter = {
 };
 
 CONFIG.letter.birthday.paragraphs.push(
-  "I do really love you 🤍"
+  "I do really love you"
 );
 
 
 CONFIG.ageSection = {
-  enabled: true, // 👉 false kalau mau disembunyikan manual
+  enabled: true, // false kalau mau disembunyikan manual
 
   message: {
     birthday: "A beautiful chapter begins",
@@ -114,5 +114,8 @@ CONFIG.theme = {
 
 if (typeof window !== "undefined") {
   window.CONFIG = CONFIG;
+}
+if (typeof module !== "undefined") {
+  module.exports = CONFIG;
 }
 
